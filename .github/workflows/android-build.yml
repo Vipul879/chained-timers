@@ -40,6 +40,8 @@ jobs:
       - name: Build Debug APK
         working-directory: android
         run: |
+          echo "configurations.all { exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7' }" >> app/build.gradle
+          echo "configurations.all { exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8' }" >> app/build.gradle
           chmod +x gradlew
           ./gradlew assembleDebug
 
@@ -48,4 +50,5 @@ jobs:
         with:
           name: chained-timers-apk
           path: android/app/build/outputs/apk/debug/*.apk
+          
           
